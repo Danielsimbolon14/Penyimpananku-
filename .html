@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Photo Storage</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        header {
+            background: #111827;
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+        }
+
+        header p {
+            color: #cbd5e1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .upload-box {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+        }
+
+        .upload-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .upload-area {
+            border: 2px dashed #94a3b8;
+            border-radius: 10px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            background: #f8fafc;
+        }
+
+        .upload-area input {
+            display: none;
+        }
+
+        .upload-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #475569;
+        }
+
+        .upload-btn {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .upload-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .status {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .gallery-title {
+            margin-bottom: 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .photo-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-info {
+            padding: 15px;
+        }
+
+        .photo-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            word-break: break-word;
+        }
+
+        .photo-date {
+            color: #64748b;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .download-btn,
+        .delete-btn {
+            flex: 1;
+            border: none;
+            padding: 9px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .download-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+        }
+
+        .empty {
+            background: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 10px;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .photo-card img {
+                height: 150px;
+            }
+
+            .container {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>My Photo Storage</h1>
+    <p>Upload dan simpan foto secara online</p>
+</header>
+
+<div class="container">
+
+    <!-- UPLOAD -->
+    <div class="upload-box">
+
+        <h2>Upload Foto</h2>
+
+        <label class="upload-area" for="photoInput">
+
+            <div class="upload-icon">
+                📷
+            </div>
+
+            <div class="upload-text">
+                Klik di sini untuk memilih foto
+            </div>
+
+            <div class="upload-text">
+                Bisa memilih beberapa foto sekaligus
+            </div>
+
+            <input
+                type="file"
+                id="photoInput"
+                accept="image/*"
+                multiple
+            >
+
+        </label>
+
+        <button
+            class="upload-btn"
+            id="uploadButton"
+        >
+            Upload Foto
+        </button>
+
+        <div
+            class="status"
+            id="status"
+        ></div>
+
+    </div>
+
+
+    <!-- GALLERY -->
+
+    <h2 class="gallery-title">
+        Foto Saya
+    </h2>
+
+    <div
+        class="gallery"
+        id="gallery"
+    >
+
+        <div class="empty">
+            Belum ada foto.
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
